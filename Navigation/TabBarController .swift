@@ -12,7 +12,7 @@ import UIKit
     
     // MARK: создаем два экрана просмотров(новости и профиль)
     
-    var newsViewController: UINavigationController!
+    var feedViewController: UINavigationController!
     var profileViewController: UINavigationController!
      
     
@@ -23,17 +23,17 @@ import UIKit
     }
     
     private func setUpController() {
-        newsViewController = UINavigationController.init(rootViewController: NewsViewController())
+        feedViewController = UINavigationController.init(rootViewController: FeedViewController())
         profileViewController = UINavigationController.init(rootViewController: ProfileViewController())
         
-        self.viewControllers = [newsViewController, profileViewController]
+        self.viewControllers = [feedViewController, profileViewController]
         
     // MARK: создаем ячейки
         
-        let itemNews = UITabBarItem(title: "News", image:UIImage(systemName: "folder"), tag: 0)
+        let itemFeed = UITabBarItem(title: "News", image:UIImage(systemName: "folder"), tag: 0)
         let itemProfile = UITabBarItem(title: "Profile", image: UIImage(systemName: "person.fill"), tag: 1)
         
-        newsViewController.tabBarItem = itemNews
+        feedViewController.tabBarItem = itemFeed 
         profileViewController.tabBarItem = itemProfile
         
         

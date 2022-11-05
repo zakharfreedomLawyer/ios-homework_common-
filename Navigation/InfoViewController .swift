@@ -18,7 +18,7 @@ final class InfoViewController:UIViewController {
     }()
     
     override func viewDidLoad() {
-        view.backgroundColor = .cyan
+        view.backgroundColor = .orange
         
         self.view.addSubview(self.buttonThird)
         self.buttonThird.center = self.view.center

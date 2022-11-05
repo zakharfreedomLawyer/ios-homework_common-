@@ -7,7 +7,7 @@
 
 import UIKit 
 
-struct FeedMessage {
+struct Post {
     var title:String
     var description:String
 }

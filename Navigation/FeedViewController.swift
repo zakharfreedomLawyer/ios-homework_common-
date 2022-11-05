@@ -1,16 +1,16 @@
 //
-//  NewsViewController.swift
-//  Navigation
+//  FeedViewController.swift
+//  Navigation 
 //
 //  Created by Захар Кисляк on 23.10.2022.
 //
 
-import UIKit
+import UIKit 
 
-final class NewsViewController: UIViewController {
+final class FeedViewController: UIViewController {
     
     // Создаем модель для заполнения информации
-    var dataSource = FeedMessage(title: "Feed cat", description:"Description")
+    var dataSource = Post(title: "Feed cat", description:"Description")
 
     private let showPostButton:UIButton = {
         let button = UIButton()
