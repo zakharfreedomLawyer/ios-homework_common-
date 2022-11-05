@@ -9,30 +9,21 @@ import UIKit
 
  final class PostViewController: UIViewController {
      
-     private lazy var nextButton: UIButton = {
-        let button = UIButton()
-         button.setTitle("Миссия выполнена", for: .normal)
-         button.setTitleColor(UIColor.orange, for: .normal)
-         return button
-     }()
-     
+
      override func viewDidLoad() {
       super.viewDidLoad()
          view.backgroundColor = .lightGray
-         view.addSubview(nextButton)
-         nextButton.frame = CGRect(x: 80, y: 100, width: 100, height: 300)
-         nextButton.titleLabel?.numberOfLines = 3
-         nextScreen() 
+         let nextScreen = UIBarButtonItem(barButtonSystemItem: .compose, target: self, action: #selector(changeScreen))
+         navigationItem.rightBarButtonItem = nextScreen
      }
      
-     func nextScreen() {
-         nextButton.addTarget(self, action: #selector(addTarget), for: .touchUpInside)
-     }
-
-     @objc func addTarget() {
-     let infoViewController = InfoViewController()
-    nextButton.inputViewController?.modalPresentationStyle = .fullScreen
+     // Меняем экран
+     
+     @objc func changeScreen() {
+         let infoViewController = InfoViewController()
+         navigationController?.inputViewController?.modalPresentationStyle = .fullScreen
          self.present(infoViewController, animated: true)
-   //   navigationController?.pushViewController(infoViewController, animated: true)
      }
  }
+
+ 

@@ -26,10 +26,8 @@ final class NewsViewController: UIViewController {
     var imageCat = UIImage(named: "cat-")
     var cateView = UIImageView()
     
-    // Создаем AlertController
-    let alertController = UIAlertController(title: "Axtung!", message: "Вы покормили котика", preferredStyle: .actionSheet)
-    
-    
+
+
    override func viewDidLoad() {
        super.viewDidLoad()
        view.backgroundColor = .lightGray
@@ -54,11 +52,8 @@ final class NewsViewController: UIViewController {
        cateView.sizeToFit()
        view.addSubview(cateView)
       
-       
-       // добавляем методы
+           
        addTarget()
-       setUpAlertConfiguration()
-       
    }
 
     
@@ -71,22 +66,12 @@ final class NewsViewController: UIViewController {
         print("Button is pressed")
     }
     
-    private func addTarget() {
-        showPostButton.addTarget(self, action: #selector(changeViewController), for: .touchUpInside)
+   private func addTarget() {
+     showPostButton.addTarget(self, action: #selector(changeViewController), for: .touchUpInside)
     }
     
     @objc private func changeViewController() {
-        let postViewController = PostViewController()
-        navigationController?.pushViewController(postViewController, animated: true)
-        self.present(alertController, animated: true, completion: nil)
-    }
-    
-    //Добавляем действие,которое будет срабатывать при нажатии на контроллер
-    
-    func setUpAlertConfiguration() {
-        let action = UIAlertAction(title: "OK", style: .default) {_ in
-            print("До свидания!")
-        }
-        alertController.addAction(action)
-    }
-}
+      let postViewController = PostViewController()
+       navigationController?.pushViewController(postViewController, animated: true)
+   }
+} 
