@@ -11,10 +11,10 @@ import UIKit
 final class InfoViewController:UIViewController {
     
     private var buttonThird: UIButton = {
-        let infoButton = UIButton(frame: CGRect(x: 0, y: 0, width: 200, height: 50))
-        infoButton.backgroundColor = .white
-        infoButton.addTarget(self, action: #selector(showAlert), for: .touchUpInside)
-        return infoButton
+      let infoButton = UIButton(frame: CGRect(x: 0, y: 0, width: 200, height: 50))
+      infoButton.backgroundColor = .white
+        infoButton.addTarget(InfoViewController.self, action: #selector(showAlert), for: .touchUpInside)
+      return infoButton
     }()
     
     override func viewDidLoad() {
