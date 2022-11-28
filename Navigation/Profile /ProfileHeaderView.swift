@@ -16,7 +16,6 @@ class ProfileHeaderView: UIView {
         setUpUI()   
 }
     
-    
     //MARK: Создаем кнопку ShowStatus
     
     private let blueeButton: UIButton = {
@@ -32,7 +31,7 @@ class ProfileHeaderView: UIView {
         buttonShowStatus.layer.shadowColor = UIColor.black.cgColor
         buttonShowStatus.translatesAutoresizingMaskIntoConstraints = false
         buttonShowStatus.setTitle("I am pressed", for: .highlighted)
-        buttonShowStatus.addTarget(self, action: #selector(buttonPressed(sender:)), for: .touchUpInside)
+        buttonShowStatus.addTarget(self, action:   #selector(buttonPressed(sender:)), for: .touchUpInside)
         
         return buttonShowStatus
     } ()
@@ -66,7 +65,6 @@ class ProfileHeaderView: UIView {
         textField.backgroundColor = .lightGray
         textField.translatesAutoresizingMaskIntoConstraints = false
         textField.textColor = UIColor.gray
-    
         return textField
     }()
     
@@ -87,7 +85,6 @@ class ProfileHeaderView: UIView {
         let whiteViewBar = UIView()
         whiteViewBar.backgroundColor = .white
         whiteViewBar.frame = CGRect(x: 0, y: 0, width: 400, height: 47)
-        
         return whiteViewBar
     }
      
@@ -101,7 +98,6 @@ class ProfileHeaderView: UIView {
     addSubview (labelNameCat)
     addSubview(whiteView)
          
-        
         
     //MARK: Constraints
         
