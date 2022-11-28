@@ -52,7 +52,7 @@ class ProfileHeaderView: UIView {
          imageView.clipsToBounds = true
          //imageView.translatesAutoresizingMaskIntoConstraints = false
          return imageView
-     }()
+     }() 
     
     //MARK: Создаем текствое поле
     
