@@ -43,7 +43,7 @@ class ProfileHeaderView: UIView {
     
     //MARK: Создаем аватарку
      
-     private lazy var catAvatarImageView: UIImageView = {
+     private var catAvatarImageView: UIImageView = {
          let imageView = UIImageView(frame: CGRect(x: 16, y: 110, width: 135, height: 135))
          imageView.image = UIImage(named: "catMaria")
          imageView.layer.borderWidth = 3
@@ -55,19 +55,19 @@ class ProfileHeaderView: UIView {
      }() 
     
     //MARK: Создаем текствое поле
-    
+
     private var textFieldShowStatus: UITextField = {
-        let textField = UITextField(frame: CGRect(x: 20, y: 150, width: 30, height: 50))
+        let textField = UITextField(frame: CGRect(x: 20, y: 50, width: 30, height: 31))
         textField.borderStyle = UITextField.BorderStyle.none
         textField.contentVerticalAlignment = UIControl.ContentVerticalAlignment.top
         textField.placeholder = "I am waiting eat..."
-        textField.font = UIFont.systemFont(ofSize: 14, weight: .regular)
+        textField.font = UIFont.systemFont(ofSize: 16, weight: .regular)
         textField.backgroundColor = .lightGray
         textField.translatesAutoresizingMaskIntoConstraints = false
         textField.textColor = UIColor.gray
         return textField
     }()
-    
+     
     //MARK: Создаем лейбл
      
      private var labelNameCat: UILabel = {
@@ -88,17 +88,18 @@ class ProfileHeaderView: UIView {
         return whiteViewBar
     }
      
-    //MARK: Функция,которая отвечает за добавление элементов
-    
-    func setUpUI() {
 
-    addSubview(blueeButton)
-    addSubview(catAvatarImageView)
-    addSubview (textFieldShowStatus)
-    addSubview (labelNameCat)
-    addSubview(whiteView)
-         
-        
+//MARK: Функция,которая отвечает за добавление элементов
+
+func setUpUI() {
+
+addSubview(blueeButton)
+addSubview(catAvatarImageView)
+addSubview(textFieldShowStatus)
+addSubview (labelNameCat)
+addSubview(whiteView)
+    
+    
     //MARK: Constraints
         
         //Constraint for button
@@ -106,32 +107,25 @@ class ProfileHeaderView: UIView {
         NSLayoutConstraint.activate([
             blueeButton.topAnchor.constraint(equalTo: catAvatarImageView.bottomAnchor, constant: 16),
             blueeButton.leftAnchor.constraint(equalTo: safeAreaLayoutGuide.leftAnchor, constant: 16),
-            blueeButton.rightAnchor.constraint(equalTo: safeAreaLayoutGuide.rightAnchor, constant: -16)
-        ])
-
+            blueeButton.rightAnchor.constraint(equalTo: safeAreaLayoutGuide.rightAnchor, constant: -16),
+    
         //Constraint for avatar
-        
-        NSLayoutConstraint.activate([
+
             catAvatarImageView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: -16),
             catAvatarImageView.leftAnchor.constraint(equalTo: safeAreaLayoutGuide.leftAnchor, constant: 16),
     
-        ])
-        
         //Constraint for label
-        
-        NSLayoutConstraint.activate([
+
             labelNameCat.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 27),
-            labelNameCat.leftAnchor.constraint(equalTo: safeAreaLayoutGuide.leftAnchor, constant: 158)
-        ])
-        
+            labelNameCat.leftAnchor.constraint(equalTo: safeAreaLayoutGuide.leftAnchor, constant: 158),
+    
         //Constraint for textfield
         
-        NSLayoutConstraint.activate([
             textFieldShowStatus.bottomAnchor.constraint(equalTo: blueeButton.topAnchor, constant: -34),
-            textFieldShowStatus.leftAnchor.constraint(equalTo: safeAreaLayoutGuide.leftAnchor, constant: 160)
+            textFieldShowStatus.leftAnchor.constraint(equalTo: safeAreaLayoutGuide.leftAnchor, constant: 160),
+            textFieldShowStatus.topAnchor.constraint(equalTo: labelNameCat.bottomAnchor, constant: 16)
         ])
-        
-    }
+}
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
