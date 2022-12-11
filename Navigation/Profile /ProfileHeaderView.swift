@@ -37,7 +37,7 @@ class ProfileHeaderView: UIView {
     } ()
      
     @objc func buttonPressed (sender:UIButton) {
-     let userText = textFieldShowStatus.text
+        let userText = labelStatusCat.text
         print(userText ?? ("nil"))
      }
     
@@ -54,21 +54,20 @@ class ProfileHeaderView: UIView {
          return imageView
      }() 
     
-    //MARK: Создаем текствое поле
-
-    private var textFieldShowStatus: UITextField = {
-        let textField = UITextField(frame: CGRect(x: 20, y: 50, width: 30, height: 31))
-        textField.borderStyle = UITextField.BorderStyle.none
-        textField.contentVerticalAlignment = UIControl.ContentVerticalAlignment.top
-        textField.placeholder = "I am waiting eat..."
-        textField.font = UIFont.systemFont(ofSize: 16, weight: .regular)
-        textField.backgroundColor = .lightGray
-        textField.translatesAutoresizingMaskIntoConstraints = false
-        textField.textColor = UIColor.gray
-        return textField
-    }()
+    //MARK: Создаем статус котика - лейбл
      
-    //MARK: Создаем лейбл
+    private var labelStatusCat: UILabel = {
+        let labelStatus = UILabel(frame: CGRect(x: 20, y: 50, width: 30, height: 31))
+        labelStatus.text = "I am waiting eat..."
+        labelStatus.font = UIFont.systemFont(ofSize: 14, weight: .regular)
+        labelStatus.textColor = UIColor.gray
+        labelStatus.translatesAutoresizingMaskIntoConstraints = false
+        return labelStatus
+    }()
+    
+
+     
+    //MARK: Создаем лейбл - имя
      
      private var labelNameCat: UILabel = {
          let labelName = UILabel(frame: CGRect(x: 200, y: 150, width: 50, height: 50))
@@ -95,9 +94,9 @@ func setUpUI() {
 
 addSubview(blueeButton)
 addSubview(catAvatarImageView)
-addSubview(textFieldShowStatus)
 addSubview (labelNameCat)
 addSubview(whiteView)
+addSubview(labelStatusCat)
     
     
     //MARK: Constraints
@@ -121,9 +120,14 @@ addSubview(whiteView)
     
         //Constraint for textfield
         
-            textFieldShowStatus.bottomAnchor.constraint(equalTo: blueeButton.topAnchor, constant: -34),
-            textFieldShowStatus.leftAnchor.constraint(equalTo: safeAreaLayoutGuide.leftAnchor, constant: 160),
-            textFieldShowStatus.topAnchor.constraint(equalTo: labelNameCat.bottomAnchor, constant: 16)
+          //  textFieldShowStatus.bottomAnchor.constraint(equalTo: blueeButton.topAnchor, constant: -34),
+          //  textFieldShowStatus.leftAnchor.constraint(equalTo: safeAreaLayoutGuide.leftAnchor, constant: 160),
+          //  textFieldShowStatus.topAnchor.constraint(equalTo: labelNameCat.bottomAnchor, constant: 16)
+    
+            labelStatusCat.bottomAnchor.constraint(equalTo: blueeButton.topAnchor, constant: -34),
+            labelStatusCat.leftAnchor.constraint(equalTo: safeAreaLayoutGuide.leftAnchor, constant: 160),
+            labelStatusCat.topAnchor.constraint(equalTo: labelNameCat.bottomAnchor, constant: 16)
+
         ])
 }
     
