@@ -9,12 +9,9 @@ import UIKit
 
 
 class ProfileHeaderView: UIView {
-        
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        self.backgroundColor  = .lightGray
-        setUpUI()   
-}
+    
+    
+    //MARK: Свойства
     
     //MARK: Создаем кнопку ShowStatus
     
@@ -35,27 +32,26 @@ class ProfileHeaderView: UIView {
         
         return buttonShowStatus
     } ()
-     
+    
     @objc func buttonPressed (sender:UIButton) {
         let userText = labelStatusCat.text
         print(userText ?? ("nil"))
-     }
+    }
     
     //MARK: Создаем аватарку
-     
-     private var catAvatarImageView: UIImageView = {
-         let imageView = UIImageView(frame: CGRect(x: 16, y: 110, width: 135, height: 135))
-         imageView.image = UIImage(named: "catMaria")
-         imageView.layer.borderWidth = 3
-         imageView.layer.borderColor = UIColor(ciColor: .white).cgColor
-         imageView.layer.cornerRadius = imageView.frame.size.width / 2
-         imageView.clipsToBounds = true
-         //imageView.translatesAutoresizingMaskIntoConstraints = false
-         return imageView
-     }() 
+    
+    private var catAvatarImageView: UIImageView = {
+        let imageView = UIImageView(frame: CGRect(x: 16, y: 110, width: 135, height: 135))
+        imageView.image = UIImage(named: "catMaria")
+        imageView.layer.borderWidth = 3
+        imageView.layer.borderColor = UIColor(ciColor: .white).cgColor
+        imageView.layer.cornerRadius = imageView.frame.size.width / 2
+        imageView.clipsToBounds = true
+        return imageView
+    }()
     
     //MARK: Создаем статус котика - лейбл
-     
+    
     private var labelStatusCat: UILabel = {
         let labelStatus = UILabel(frame: CGRect(x: 20, y: 50, width: 30, height: 31))
         labelStatus.text = "I am waiting eat..."
@@ -65,19 +61,16 @@ class ProfileHeaderView: UIView {
         return labelStatus
     }()
     
-
-     
     //MARK: Создаем лейбл - имя
-     
-     private var labelNameCat: UILabel = {
-         let labelName = UILabel(frame: CGRect(x: 200, y: 150, width: 50, height: 50))
-         labelName.text = "Scottish shorthair"
-         labelName.font = UIFont.systemFont(ofSize: 18, weight: .bold)
-         labelName.translatesAutoresizingMaskIntoConstraints = false
-         return labelName
-     }()
     
-    
+    private var labelNameCat: UILabel = {
+        let labelName = UILabel(frame: CGRect(x: 200, y: 150, width: 50, height: 50))
+        labelName.text = "Scottish shorthair"
+        labelName.font = UIFont.systemFont(ofSize: 18, weight: .bold)
+        labelName.translatesAutoresizingMaskIntoConstraints = false
+        return labelName
+    }()
+
     //MARK: Дополнительное View для Navigation Bar
     
     private var whiteView: UIView {
@@ -88,18 +81,26 @@ class ProfileHeaderView: UIView {
     }
      
 
-//MARK: Функция,которая отвечает за добавление элементов
-
-func setUpUI() {
-
-addSubview(blueeButton)
-addSubview(catAvatarImageView)
-addSubview (labelNameCat)
-addSubview(whiteView)
-addSubview(labelStatusCat)
+    //MARK: Инициализаторы
     
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        self.backgroundColor  = .lightGray
+        setUpUI()
+    }
     
-    //MARK: Constraints
+    //MARK: Методы
+        
+    func setUpUI() {
+        
+        addSubview(blueeButton)
+        addSubview(catAvatarImageView)
+        addSubview (labelNameCat)
+        addSubview(whiteView)
+        addSubview(labelStatusCat)
+        
+    
+        //MARK: Constraints
         
         //Constraint for button
         
@@ -108,28 +109,23 @@ addSubview(labelStatusCat)
             blueeButton.leftAnchor.constraint(equalTo: safeAreaLayoutGuide.leftAnchor, constant: 16),
             blueeButton.rightAnchor.constraint(equalTo: safeAreaLayoutGuide.rightAnchor, constant: -16),
     
-        //Constraint for avatar
-
+            //Constraint for avatar
+            
             catAvatarImageView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: -16),
             catAvatarImageView.leftAnchor.constraint(equalTo: safeAreaLayoutGuide.leftAnchor, constant: 16),
-    
-        //Constraint for label
-
+            
+            //Constraint for label
+            
             labelNameCat.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 27),
             labelNameCat.leftAnchor.constraint(equalTo: safeAreaLayoutGuide.leftAnchor, constant: 158),
     
-        //Constraint for textfield
-        
-          //  textFieldShowStatus.bottomAnchor.constraint(equalTo: blueeButton.topAnchor, constant: -34),
-          //  textFieldShowStatus.leftAnchor.constraint(equalTo: safeAreaLayoutGuide.leftAnchor, constant: 160),
-          //  textFieldShowStatus.topAnchor.constraint(equalTo: labelNameCat.bottomAnchor, constant: 16)
-    
+            //Constraint for textfield
+            
             labelStatusCat.bottomAnchor.constraint(equalTo: blueeButton.topAnchor, constant: -34),
             labelStatusCat.leftAnchor.constraint(equalTo: safeAreaLayoutGuide.leftAnchor, constant: 160),
             labelStatusCat.topAnchor.constraint(equalTo: labelNameCat.bottomAnchor, constant: 16)
-
         ])
-}
+    }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
