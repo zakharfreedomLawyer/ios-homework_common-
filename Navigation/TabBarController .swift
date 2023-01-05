@@ -13,8 +13,11 @@ final class TabBarController: UITabBarController {
    
    var feedViewController: UINavigationController!
    var profileViewController: UINavigationController!
+    
+    //MARK: - Добавляем новый контроллер
+    
+   var logInViewController: UINavigationController!
      
-   
    
    override func viewDidLoad() {
      super.viewDidLoad()
@@ -23,9 +26,10 @@ final class TabBarController: UITabBarController {
    
    private func setUpController() {
        feedViewController = UINavigationController.init(rootViewController: FeedViewController())
-       profileViewController = UINavigationController.init(rootViewController: ProfileViewController()) 
+       logInViewController = UINavigationController.init(rootViewController: LogInViewController())
+      // logInViewController.navigationBar.isHidden = true 
        
-       self.viewControllers = [feedViewController, profileViewController]
+       self.viewControllers = [feedViewController, logInViewController]
        
    // MARK: создаем ячейки
        
@@ -33,7 +37,7 @@ final class TabBarController: UITabBarController {
        let itemProfile = UITabBarItem(title: "Profile", image: UIImage(systemName: "person.fill"), tag: 1)
        
        feedViewController.tabBarItem = itemFeed
-       profileViewController.tabBarItem = itemProfile
+       logInViewController.tabBarItem = itemProfile
        
        
    // MARK: настройка кнопок в ячейках

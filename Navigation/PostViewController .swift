@@ -17,10 +17,10 @@ import UIKit
          navigationItem.rightBarButtonItem = nextScreen
      }
      
-     // Меняем экран
+     // MARK: Переход на следующий экран
      
      @objc func changeScreen() {
-         let infoViewController = InfoViewController()
+        let infoViewController = InfoViewController()
          navigationController?.inputViewController?.modalPresentationStyle = .fullScreen
          self.present(infoViewController, animated: true)
      }

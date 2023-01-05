@@ -9,19 +9,16 @@ import UIKit
 
 final class FeedViewController: UIViewController {
     
-    // Создаем модель для заполнения информации
+    //MARK: Свойства
+    
     var dataSource = Post(title: "Feed cat", description:"Description")
 
     private let showPostButton:UIButton = {
         let button = UIButton()
         button.setTitle("Покормить котика", for: .normal)
         button.setTitleColor(UIColor.black, for: .normal)
-        
-        
         return button
     } ()
-    
-    // Создаем картинку
     
     var imageCat = UIImage(named: "cat-")
     var cateView = UIImageView()
@@ -43,7 +40,7 @@ final class FeedViewController: UIViewController {
        showPostButton.addTarget(self, action: #selector(buttonIsTapped(sender:)), for: .touchDown)
        showPostButton.addTarget(self, action: #selector(buttonIsPressed(sender:)), for: .touchUpInside)
       
-       // Картинка
+       //MARK: Картинка
        cateView = UIImageView(frame: CGRect(x: 30, y: 60, width: 50, height: 30))
        cateView.contentMode = .redraw
        cateView.layer.cornerRadius = 30
@@ -70,8 +67,9 @@ final class FeedViewController: UIViewController {
      showPostButton.addTarget(self, action: #selector(changeViewController), for: .touchUpInside)
     }
     
-    @objc private func changeViewController() {
-      let postViewController = PostViewController()
+    @objc private func changeViewController() { 
+        let postViewController = PostViewController()
        navigationController?.pushViewController(postViewController, animated: true)
    }
-} 
+}
+ 

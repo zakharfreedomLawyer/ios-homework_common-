@@ -16,7 +16,7 @@ class ProfileHeaderView: UIView {
     //MARK: Создаем кнопку ShowStatus(1)
     
     private let blueeButton: UIButton = {
-        let buttonShowStatus = UIButton(frame: CGRect(x: 16, y: 300, width: 355,  height: 50))
+        let buttonShowStatus = UIButton()
         buttonShowStatus.setTitle("Show status", for: .normal)
         buttonShowStatus.titleLabel?.textColor = .white
         buttonShowStatus.titleLabel?.font = UIFont.systemFont(ofSize: 18)
@@ -29,7 +29,6 @@ class ProfileHeaderView: UIView {
         buttonShowStatus.translatesAutoresizingMaskIntoConstraints = false
         buttonShowStatus.setTitle("I am pressed", for: .highlighted)
         buttonShowStatus.addTarget(self, action:   #selector(buttonPressed(sender:)), for: .touchUpInside)
-        
         return buttonShowStatus
     } ()
     
@@ -54,7 +53,7 @@ class ProfileHeaderView: UIView {
     //MARK: Создаем статус котика - лейбл(3)
     
     private var labelStatusCat: UILabel = {
-        let labelStatus = UILabel(frame: CGRect(x: 20, y: 50, width: 30, height: 31))
+        let labelStatus = UILabel()
         labelStatus.text = "I am waiting eat..."
         labelStatus.font = UIFont.systemFont(ofSize: 14, weight: .regular)
         labelStatus.textColor = UIColor.gray
@@ -65,7 +64,7 @@ class ProfileHeaderView: UIView {
     //MARK: Создаем лейбл - имя(4)
     
     private var labelNameCat: UILabel = {
-        let labelName = UILabel(frame: CGRect(x:200, y: 150, width: 50, height: 50))
+        let labelName = UILabel()
         labelName.text = "Scottish shorthair"
         labelName.font = UIFont.systemFont(ofSize: 18, weight: .bold)
         labelName.translatesAutoresizingMaskIntoConstraints = false
@@ -75,17 +74,19 @@ class ProfileHeaderView: UIView {
     //MARK: Создаем текстовое поле (5)
     
     private var catTextField: UITextField = {
-        let textCat = UITextField(frame: CGRect(x: 100, y: 100, width: 70, height: 50))
-        textCat.borderStyle = .roundedRect
-        textCat.textColor = .lightGray
+        let textCat = UITextField()
+        textCat.layer.borderColor = UIColor.black.cgColor
+        textCat.layer.borderWidth = 1
+        textCat.layer.cornerRadius = 10
+        textCat.textColor = .black
+        textCat.backgroundColor = .white
+        textCat.textAlignment = .center
         textCat.placeholder = "What would you like?"
-        textCat.isSecureTextEntry = true
-        textCat.font = UIFont.systemFont(ofSize: 15, weight: .bold)
+        textCat.font = UIFont.systemFont(ofSize: 15, weight: .regular)
         textCat.translatesAutoresizingMaskIntoConstraints = false
-
         return textCat 
     }()
-      
+    
     //MARK: Инициализаторы
     
     override init(frame: CGRect) {
@@ -115,7 +116,9 @@ class ProfileHeaderView: UIView {
             blueeButton.topAnchor.constraint(equalTo: catAvatarImageView.bottomAnchor, constant: 16),
             blueeButton.leftAnchor.constraint(equalTo: safeAreaLayoutGuide.leftAnchor, constant: 16),
             blueeButton.rightAnchor.constraint(equalTo: safeAreaLayoutGuide.rightAnchor, constant: -16),
-    
+            blueeButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -20),
+            blueeButton.heightAnchor.constraint(equalToConstant: 50),
+            
             //Constraint for avatar
             
             catAvatarImageView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 16),
@@ -130,15 +133,18 @@ class ProfileHeaderView: UIView {
     
             //Constraint for label-2
             
-            labelStatusCat.bottomAnchor.constraint(equalTo: blueeButton.topAnchor, constant: -50),
             labelStatusCat.leftAnchor.constraint(equalTo: safeAreaLayoutGuide.leftAnchor, constant: 160),
-            labelStatusCat.topAnchor.constraint(equalTo: labelNameCat.bottomAnchor, constant: 16),
-            
+            labelStatusCat.topAnchor.constraint(equalTo: self.topAnchor, constant: 68),
+            labelStatusCat.trailingAnchor.constraint(equalTo: catAvatarImageView.trailingAnchor, constant: 145),
+            labelStatusCat.leadingAnchor.constraint(equalTo: catAvatarImageView.trailingAnchor, constant: 20),
+        
             //Constraint for textField
             catTextField.bottomAnchor.constraint(equalTo: blueeButton.topAnchor, constant: -16),
             catTextField.leftAnchor.constraint(equalTo: safeAreaLayoutGuide.leftAnchor, constant: 160),
             catTextField.topAnchor.constraint(equalTo: labelStatusCat.bottomAnchor, constant: 16),
-            catTextField.heightAnchor.constraint(equalToConstant: 70)
+            catTextField.heightAnchor.constraint(equalToConstant: 35),
+            catTextField.widthAnchor.constraint(equalToConstant: 200)
+
         ])
     }
     
