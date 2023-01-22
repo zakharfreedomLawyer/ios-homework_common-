@@ -8,7 +8,6 @@
 import UIKit
 
 
-
 class LogInViewController: UIViewController {
     
     //MARK: -Свойства
@@ -158,7 +157,7 @@ class LogInViewController: UIViewController {
           commonStackLoginPassword.leadingAnchor.constraint(equalTo: scrollView.safeAreaLayoutGuide.leadingAnchor, constant: 16),
           commonStackLoginPassword.trailingAnchor.constraint(equalTo:  scrollView.safeAreaLayoutGuide.trailingAnchor, constant: -16),
           commonStackLoginPassword.topAnchor.constraint(equalTo: logoVkLabel.bottomAnchor, constant: 120),
-          commonStackLoginPassword.heightAnchor.constraint(equalToConstant: 160),
+          commonStackLoginPassword.heightAnchor.constraint(equalToConstant: 180),
             
         ])
     }

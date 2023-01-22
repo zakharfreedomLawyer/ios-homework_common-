@@ -11,7 +11,16 @@ import UIKit
 class ProfileHeaderView: UIView {
     
     
-    //MARK: Свойства
+    //UIStackView (логин, пароль, лейбл)
+    
+    private let commonInformationStack: UIStackView = {
+        let stackView = UIStackView()
+        stackView.spacing = 10
+        stackView.axis = .vertical
+        stackView.distribution = .fillEqually
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        return stackView
+    }()
     
     //MARK: Создаем кнопку ShowStatus(1)
     
@@ -49,7 +58,7 @@ class ProfileHeaderView: UIView {
         imageView.clipsToBounds = true
         return imageView
     }()
-    
+  
     //MARK: Создаем статус котика - лейбл(3)
     
     private var labelStatusCat: UILabel = {
@@ -87,6 +96,15 @@ class ProfileHeaderView: UIView {
         return textCat 
     }()
     
+    //MARK: Создаем замещающий View
+    
+    private lazy var viewBar: UIView = {
+        let viewBar = UIView()
+        viewBar.backgroundColor = .white
+        viewBar.translatesAutoresizingMaskIntoConstraints = false
+        return viewBar
+    }()
+    
     //MARK: Инициализаторы
     
     override init(frame: CGRect) {
@@ -95,18 +113,25 @@ class ProfileHeaderView: UIView {
         setUpUI()
     }
     
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     //MARK: Методы
         
-    func setUpUI() {
+    private func setUpUI() {
         
         addSubview(blueeButton)
         addSubview(catAvatarImageView)
-        addSubview (labelNameCat)
-        addSubview(labelStatusCat)
-        addSubview(catTextField)
+        addSubview(commonInformationStack)
+        addSubview(viewBar)
        
+        self.commonInformationStack.addArrangedSubview(labelNameCat)
+        self.commonInformationStack.addArrangedSubview(labelStatusCat)
+        self.commonInformationStack.addArrangedSubview(catTextField)
         
-    
+        
+        
         //MARK: Constraints
         
         NSLayoutConstraint.activate([
@@ -126,29 +151,20 @@ class ProfileHeaderView: UIView {
             catAvatarImageView.heightAnchor.constraint(equalToConstant: 135),
             catAvatarImageView.widthAnchor.constraint(equalToConstant: 135),
             
-            //Constraint for label
+            //Сonstraint for comonInformationStack
             
-            labelNameCat.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 10),
-            labelNameCat.leftAnchor.constraint(equalTo: safeAreaLayoutGuide.leftAnchor, constant: 158),
-    
-            //Constraint for label-2
+            commonInformationStack.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 16),
+            commonInformationStack.heightAnchor.constraint(equalToConstant: 130),
+            commonInformationStack.widthAnchor.constraint(equalToConstant: 200),
+            commonInformationStack.leadingAnchor.constraint(equalTo: catAvatarImageView.trailingAnchor, constant: 16),
             
-            labelStatusCat.leftAnchor.constraint(equalTo: safeAreaLayoutGuide.leftAnchor, constant: 160),
-            labelStatusCat.topAnchor.constraint(equalTo: self.topAnchor, constant: 68),
-            labelStatusCat.trailingAnchor.constraint(equalTo: catAvatarImageView.trailingAnchor, constant: 145),
-            labelStatusCat.leadingAnchor.constraint(equalTo: catAvatarImageView.trailingAnchor, constant: 20),
+            //Constraint for ViewBarWhite
+            
+            viewBar.heightAnchor.constraint(equalToConstant: 60),
+            viewBar.widthAnchor.constraint(equalToConstant: 400),
+            viewBar.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: -30),
         
-            //Constraint for textField
-            catTextField.bottomAnchor.constraint(equalTo: blueeButton.topAnchor, constant: -16),
-            catTextField.leftAnchor.constraint(equalTo: safeAreaLayoutGuide.leftAnchor, constant: 160),
-            catTextField.topAnchor.constraint(equalTo: labelStatusCat.bottomAnchor, constant: 16),
-            catTextField.heightAnchor.constraint(equalToConstant: 35),
-            catTextField.widthAnchor.constraint(equalToConstant: 200)
-
         ])
     }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
 }
+

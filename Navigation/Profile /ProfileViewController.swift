@@ -7,65 +7,110 @@
 
 import UIKit
 
- class ProfileViewController: UIViewController { 
-    
-    //MARK: Свойства
-    
-   var profileHeaderView = ProfileHeaderView()
-   
-     //MARK: -Добавляем кнопку changetitle
-     
-     private let changeTitleButton: UIButton = {
-         let titleButton = UIButton(frame: CGRect(x: 0, y:0, width: 355, height: 50))
-         titleButton.setTitle("Change title", for: .normal)
-         titleButton.titleLabel?.textColor = .white
-         titleButton.titleLabel?.font = UIFont.systemFont(ofSize: 18)
-         titleButton.backgroundColor = .darkGray
-         titleButton.layer.cornerRadius = 4
-         titleButton.layer.shadowOpacity = 0.7
-         titleButton.layer.shadowOffset = CGSize(width: 4, height: 4)
-         titleButton.layer.shadowRadius = 4
-         titleButton.layer.shadowColor = UIColor.black.cgColor
-         titleButton.translatesAutoresizingMaskIntoConstraints = false
-         return titleButton
-     }()
 
+class ProfileViewController: UIViewController {
+
+   //MARK: Свойства
+   
+  var profileHeaderView = ProfileHeaderView()
+    
+    //Создаем таблицу
+    
+    private lazy var tableView: UITableView = {
+        let tableView = UITableView(frame: .zero, style: .grouped)
+        tableView.dataSource = self
+        tableView.delegate = self
+        tableView.tableFooterView = UIView(frame: .zero)
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "SecondCell")
+        tableView.register(PostTableViewCell.self, forCellReuseIdentifier: "PostTableViewController")
+        tableView.rowHeight = UITableView.automaticDimension
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.backgroundColor = .systemPink
+        return tableView
+    }()
+    
+    //MARK: Create identifire
+    
+    let identifire = "Mani"
+    
 //MARK: -Добавляем констрейнт для HeaderView
 
 func setUpUIConstrainsts() {
-    view.addSubview(profileHeaderView)
-    view.addSubview(changeTitleButton)
+ 
+    view.addSubview(tableView)
     
-    NSLayoutConstraint.activate([
-        
-        //Constraint for ProfileHeaderView
-        
-        profileHeaderView.leftAnchor.constraint(equalTo: view.leftAnchor),
-        profileHeaderView.rightAnchor.constraint(equalTo: view.rightAnchor),
-        profileHeaderView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-        
-        
-        //Constraint for button changeTitle
-        changeTitleButton.leftAnchor.constraint(equalTo: view.leftAnchor),
-        changeTitleButton.rightAnchor.constraint(equalTo: view.rightAnchor),
-        changeTitleButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
-        changeTitleButton.heightAnchor.constraint(equalToConstant: 30) 
-    ])
+   NSLayoutConstraint.activate([
+    
+       //Constraint for tableView
+       
+    //tableView.topAnchor.constraint(equalTo: view.topAnchor),
+    tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+    tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+    tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor), 
+
+      ])
+   }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewWillLayoutSubviews()
     }
-     
-     override func viewDidLayoutSubviews() {
+    
+      override func viewDidLoad() {
+          super.viewDidLoad()
+          view.backgroundColor = .lightGray
+          profileHeaderView.backgroundColor = .lightGray
+          profileHeaderView.translatesAutoresizingMaskIntoConstraints = false
+          view.addSubview(profileHeaderView)
+          self.title = "Profile"
+          self.navigationController?.navigationBar.backgroundColor = .white
+          setUpUIConstrainsts()
      }
-       override func viewDidLoad() {
-           super.viewDidLoad()
-           view.backgroundColor = .lightGray
-           profileHeaderView.backgroundColor = .lightGray
-           profileHeaderView.translatesAutoresizingMaskIntoConstraints = false
-           view.addSubview(profileHeaderView)
-           self.title = "Profile"
-           self.navigationController?.navigationBar.backgroundColor = .white
-           setUpUIConstrainsts()
-      }
- }
+}
+    //MARK: Расширение для DataSource
 
-
+    extension ProfileViewController: UITableViewDataSource, UITableViewDelegate {
+        
+        func tableView(_tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+            return dataForCells.count
+        }
+       
+        func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+            
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "ProfileViewController", for: indexPath) as? PostTableViewCell else {
+                let cell = tableView.dequeueReusableCell(withIdentifier: "SecondCell", for: indexPath)
+                return cell
+            }
+            cell.fillImage(text: dataForCells[indexPath.row].imageName)
+            cell.fillauthor(author: dataForCells[indexPath.row].author)
+            cell.filldescription(textForDesk: dataForCells[indexPath.row].description)
+            cell.fillLikes(dataForLike: "Likes: \(dataForCells[indexPath.row].likes)")
+            cell.fillViews(dataForViews: "Views: \(dataForCells[indexPath.row].view)")
+        
+            return cell
+        }
+        
+        func numberOfSections(in tableView: UITableView) -> Int {
+            1
+        }
+        
+        func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+            return dataForCells.count
+        }
+        
+        func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+            return 240
+        }
+        
+        //MARK: Функция для заголовка таблицы
+        
+        func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+          "Profile"
+        }
+        
+        //MARK: Функция для "подвала" таблицы
+        
+        func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
+            "Title2"
+        }
+    }
 
