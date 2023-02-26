@@ -69,10 +69,7 @@ class PostTableViewCell: UITableViewCell {
         constraintsForCell()
         configuration()
     }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
+
     
     
     func fillImage(text: String) {
@@ -122,7 +119,6 @@ class PostTableViewCell: UITableViewCell {
                 commonViews.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
                 commonViews.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -16)
             ])
-           
         }
     
     func configuration() {
@@ -131,5 +127,8 @@ class PostTableViewCell: UITableViewCell {
         contentView.addSubview(descriptionForPost)
         contentView.addSubview(likesForTable)
         contentView.addSubview(commonViews) 
-    } 
+    }
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 }

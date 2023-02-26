@@ -12,22 +12,20 @@ class ProfileViewController: UIViewController {
 
    //MARK: Свойства
    
-  var profileHeaderView = ProfileHeaderView()
+  let profileHeaderView = ProfileHeaderView()
     
     //Создаем таблицу
     
     private lazy var tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .grouped)
-        tableView.dataSource = self
-        tableView.delegate = self
         tableView.tableFooterView = UIView(frame: .zero)
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "SecondCell")
-        tableView.register(PostTableViewCell.self, forCellReuseIdentifier: "PostTableViewController")
+        tableView.register(PostTableViewCell.self, forCellReuseIdentifier: "PostTableViewCell")
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "SecondViewCell")
         tableView.rowHeight = UITableView.automaticDimension
         tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.backgroundColor = .systemPink
+        tableView.backgroundColor = .systemPink 
         return tableView
-    }()
+    }() 
     
     //MARK: Create identifire
     
@@ -37,29 +35,38 @@ class ProfileViewController: UIViewController {
 
 func setUpUIConstrainsts() {
  
-    view.addSubview(tableView)
+    self.view.addSubview(self.tableView)
+    tableView.backgroundColor = .white
     
    NSLayoutConstraint.activate([
     
        //Constraint for tableView
        
-    //tableView.topAnchor.constraint(equalTo: view.topAnchor),
+    tableView.topAnchor.constraint(equalTo: view.topAnchor),
     tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
     tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-    tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor), 
+    tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
 
       ])
    }
     
-    override func viewDidLayoutSubviews() {
+    override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
+        
     }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+    }
+    
     
       override func viewDidLoad() {
           super.viewDidLoad()
           view.backgroundColor = .lightGray
           profileHeaderView.backgroundColor = .lightGray
           profileHeaderView.translatesAutoresizingMaskIntoConstraints = false
+          tableView.dataSource = self
+          tableView.delegate = self
           view.addSubview(profileHeaderView)
           self.title = "Profile"
           self.navigationController?.navigationBar.backgroundColor = .white
@@ -76,8 +83,8 @@ func setUpUIConstrainsts() {
        
         func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
             
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: "ProfileViewController", for: indexPath) as? PostTableViewCell else {
-                let cell = tableView.dequeueReusableCell(withIdentifier: "SecondCell", for: indexPath)
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "PostTableViewCell", for: indexPath) as? PostTableViewCell else {
+                let cell = tableView.dequeueReusableCell(withIdentifier: "SecondViewCell", for: indexPath)
                 return cell
             }
             cell.fillImage(text: dataForCells[indexPath.row].imageName)

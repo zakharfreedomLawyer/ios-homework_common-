@@ -27,6 +27,6 @@ struct PostIntable {
 var dataForCells: [PostIntable] {
     
     //1
-    return [PostIntable(author: "Britain's Family", description: "We decided to take a shower together every friday, that's funny and good way to see all family after really hard sleepy week", imageName: "dragon", likes: 11909, view: 23198)
+    return [PostIntable(author: "Britain's Family", description: "", imageName: "dragon", likes: 11909, view: 23198)
     ]
 }
