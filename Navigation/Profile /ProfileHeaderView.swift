@@ -29,7 +29,7 @@ class ProfileHeaderView: UIView {
         buttonShowStatus.setTitle("Show status", for: .normal)
         buttonShowStatus.titleLabel?.textColor = .white
         buttonShowStatus.titleLabel?.font = UIFont.systemFont(ofSize: 18)
-        buttonShowStatus.backgroundColor = .blue
+        buttonShowStatus.backgroundColor = .systemBlue
         buttonShowStatus.layer.cornerRadius = 4
         buttonShowStatus.layer.shadowOpacity = 0.7
         buttonShowStatus.layer.shadowOffset = CGSize(width: 4, height: 4)
@@ -104,12 +104,16 @@ class ProfileHeaderView: UIView {
         viewBar.translatesAutoresizingMaskIntoConstraints = false
         return viewBar
     }()
+  
+    
+    
     
     //MARK: Инициализаторы
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.backgroundColor  = .lightGray
+        self.backgroundColor  = .systemGray6
+        config()
         setUpUI()
     }
     
@@ -119,8 +123,10 @@ class ProfileHeaderView: UIView {
     
     //MARK: Методы
         
-    private func setUpUI() {
-        
+    
+    //Метод для добавления вью
+    
+    private func config() {
         addSubview(blueeButton)
         addSubview(catAvatarImageView)
         addSubview(commonInformationStack)
@@ -130,7 +136,12 @@ class ProfileHeaderView: UIView {
         self.commonInformationStack.addArrangedSubview(labelStatusCat)
         self.commonInformationStack.addArrangedSubview(catTextField)
         
-        
+    
+    }
+    
+    //Метод для констрейнтов
+    
+    private func setUpUI() {
         
         //MARK: Constraints
         
@@ -138,11 +149,11 @@ class ProfileHeaderView: UIView {
             
             //Constraint for button
         
-            blueeButton.topAnchor.constraint(equalTo: catAvatarImageView.bottomAnchor, constant: 16),
-            blueeButton.leftAnchor.constraint(equalTo: safeAreaLayoutGuide.leftAnchor, constant: 16),
-            blueeButton.rightAnchor.constraint(equalTo: safeAreaLayoutGuide.rightAnchor, constant: -16),
+            blueeButton.topAnchor.constraint(equalTo: catAvatarImageView.bottomAnchor, constant: 16),          
+            blueeButton.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor, constant: 16),
+            blueeButton.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor, constant: -16),
             blueeButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -20),
-            blueeButton.heightAnchor.constraint(equalToConstant: 50),
+
             
             //Constraint for avatar
             
@@ -160,11 +171,10 @@ class ProfileHeaderView: UIView {
             
             //Constraint for ViewBarWhite
             
-            viewBar.heightAnchor.constraint(equalToConstant: 60),
+            viewBar.heightAnchor.constraint(equalToConstant: 40),
             viewBar.widthAnchor.constraint(equalToConstant: 400),
             viewBar.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: -30),
-        
         ])
     }
-}
-
+} 
+   

@@ -18,14 +18,13 @@ class PostTableViewCell: UITableViewCell {
         previewText.textColor = .black
         previewText.translatesAutoresizingMaskIntoConstraints = false
         return previewText
-    }()
+    }() 
     
     //Фото для таблицы
     
     private let imageForCell: UIImageView = {
         let imageCell = UIImageView()
         imageCell.contentMode = .scaleAspectFit
-        //imageCell.backgroundColor = .black
         imageCell.translatesAutoresizingMaskIntoConstraints = false
         return imageCell
     }()
@@ -66,10 +65,14 @@ class PostTableViewCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         contentMode = .scaleAspectFit
         backgroundColor = .white
-        constraintsForCell()
         configuration()
+        constraintsForCell()
     }
-
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     
     
     func fillImage(text: String) {
@@ -90,6 +93,15 @@ class PostTableViewCell: UITableViewCell {
     
     func fillViews(dataForViews: String) {
         commonViews.text = dataForViews
+    }
+    
+    
+    func configuration() {
+        contentView.addSubview(descriptionText)
+        contentView.addSubview(imageForCell)
+        contentView.addSubview(descriptionForPost)
+        contentView.addSubview(likesForTable)
+        contentView.addSubview(commonViews)
     }
     
     //Constraints
@@ -120,15 +132,4 @@ class PostTableViewCell: UITableViewCell {
                 commonViews.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -16)
             ])
         }
-    
-    func configuration() {
-        contentView.addSubview(descriptionText)
-        contentView.addSubview(imageForCell)
-        contentView.addSubview(descriptionForPost)
-        contentView.addSubview(likesForTable)
-        contentView.addSubview(commonViews) 
-    }
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
 }

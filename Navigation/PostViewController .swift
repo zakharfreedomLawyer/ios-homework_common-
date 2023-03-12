@@ -13,14 +13,14 @@ import UIKit
      override func viewDidLoad() {
       super.viewDidLoad()
          view.backgroundColor = .lightGray
-         let nextScreen = UIBarButtonItem(barButtonSystemItem: .compose, target: self, action: #selector(changeScreen))
-         navigationItem.rightBarButtonItem = nextScreen
+        let nextScreen = UIBarButtonItem(barButtonSystemItem: .compose, target: self, action: #selector(changeScreen))
+        navigationItem.rightBarButtonItem = nextScreen
      }
      
      // MARK: Переход на следующий экран
      
-     @objc func changeScreen() {
-        let infoViewController = InfoViewController()
+    @objc func changeScreen() {
+      let infoViewController = InfoViewController()
          navigationController?.inputViewController?.modalPresentationStyle = .fullScreen
          self.present(infoViewController, animated: true)
      }

@@ -14,6 +14,7 @@ class ProfileViewController: UIViewController {
    
   let profileHeaderView = ProfileHeaderView()
     
+    
     //Создаем таблицу
     
     private lazy var tableView: UITableView = {
@@ -25,11 +26,27 @@ class ProfileViewController: UIViewController {
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.backgroundColor = .systemPink 
         return tableView
-    }() 
+    }()
     
     //MARK: Create identifire
     
     let identifire = "Mani"
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        view.backgroundColor = .lightGray
+        profileHeaderView.backgroundColor = .systemGray6
+        profileHeaderView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.dataSource = self
+        tableView.delegate = self
+        view.addSubview(profileHeaderView)
+        self.title = "Profile"
+        self.navigationItem.setHidesBackButton(true, animated: true)
+        self.navigationController?.navigationBar.backgroundColor = .white
+        setUpUIConstrainsts()
+   }
+    
+    
     
 //MARK: -Добавляем констрейнт для HeaderView
 
@@ -46,7 +63,9 @@ func setUpUIConstrainsts() {
     tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
     tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
     tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
-
+    
+    profileHeaderView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+    profileHeaderView.trailingAnchor.constraint(equalTo: view.trailingAnchor) 
       ])
    }
     
@@ -60,19 +79,9 @@ func setUpUIConstrainsts() {
     }
     
     
-      override func viewDidLoad() {
-          super.viewDidLoad()
-          view.backgroundColor = .lightGray
-          profileHeaderView.backgroundColor = .lightGray
-          profileHeaderView.translatesAutoresizingMaskIntoConstraints = false
-          tableView.dataSource = self
-          tableView.delegate = self
-          view.addSubview(profileHeaderView)
-          self.title = "Profile"
-          self.navigationController?.navigationBar.backgroundColor = .white
-          setUpUIConstrainsts()
-     }
+ 
 }
+
     //MARK: Расширение для DataSource
 
     extension ProfileViewController: UITableViewDataSource, UITableViewDelegate {
@@ -110,14 +119,7 @@ func setUpUIConstrainsts() {
         
         //MARK: Функция для заголовка таблицы
         
-        func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-          "Profile"
-        }
-        
-        //MARK: Функция для "подвала" таблицы
-        
-        func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
-            "Title2"
-        }
+        func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+            return profileHeaderView
+         }
     }
-

@@ -189,9 +189,8 @@ class LogInViewController: UIViewController {
     @objc func openProfile() {
         let profileView = ProfileViewController()
         navigationController?.pushViewController(profileView, animated: true)
-
     }
-
+    
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
            super.touchesBegan(touches, with: event)
            view.endEditing(true)
