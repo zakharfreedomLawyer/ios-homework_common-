@@ -58,11 +58,10 @@ class LogInViewController: UIViewController {
         logInTextField.textColor = .black
         logInTextField.translatesAutoresizingMaskIntoConstraints = false
         logInTextField.layer.borderColor = UIColor.lightGray.cgColor
-        logInTextField.layer.borderWidth = 0.5
-        logInTextField.layer.cornerRadius = 10
         logInTextField.font = .systemFont(ofSize: 16, weight: .regular)
         logInTextField.placeholder = "Email or phone"
         logInTextField.textAlignment = .left
+        logInTextField.leftViewMode = .always
         logInTextField.backgroundColor = .systemGray6
         logInTextField.keyboardType = .emailAddress
         logInTextField.keyboardAppearance = .alert
@@ -94,13 +93,18 @@ class LogInViewController: UIViewController {
     
     private let commonStackLoginPassword: UIStackView = {
         let stackView = UIStackView()
-        stackView.contentMode = .scaleAspectFill
+        stackView.clipsToBounds = true
+        stackView.contentMode = .center
         stackView.axis = .vertical
         stackView.distribution = .fillEqually
         stackView.spacing = 0
         stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.layer.borderWidth = 0.5
+        stackView.layer.borderColor = UIColor.lightGray.cgColor
+        stackView.layer.cornerRadius = 10
         return stackView
     }()
+
     
     //MARK: -Инициализаторы
     
@@ -123,7 +127,6 @@ class LogInViewController: UIViewController {
         scrollView.addSubview(logoVkLabel)
         scrollView.addSubview(commonStackLoginPassword)
        
-        
         NSLayoutConstraint.activate([
             
             //MARK: Constraint for logoVK

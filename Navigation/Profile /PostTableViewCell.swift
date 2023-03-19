@@ -74,7 +74,6 @@ class PostTableViewCell: UITableViewCell {
     }
     
     
-    
     func fillImage(text: String) {
         imageForCell.image = UIImage(named: text)
     }

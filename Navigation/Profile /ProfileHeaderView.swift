@@ -96,16 +96,6 @@ class ProfileHeaderView: UIView {
         return textCat 
     }()
     
-    //MARK: Создаем замещающий View
-    
-    private lazy var viewBar: UIView = {
-        let viewBar = UIView()
-        viewBar.backgroundColor = .white
-        viewBar.translatesAutoresizingMaskIntoConstraints = false
-        return viewBar
-    }()
-  
-    
     
     
     //MARK: Инициализаторы
@@ -130,7 +120,7 @@ class ProfileHeaderView: UIView {
         addSubview(blueeButton)
         addSubview(catAvatarImageView)
         addSubview(commonInformationStack)
-        addSubview(viewBar)
+       
        
         self.commonInformationStack.addArrangedSubview(labelNameCat)
         self.commonInformationStack.addArrangedSubview(labelStatusCat)
@@ -153,6 +143,7 @@ class ProfileHeaderView: UIView {
             blueeButton.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor, constant: 16),
             blueeButton.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor, constant: -16),
             blueeButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -20),
+            blueeButton.heightAnchor.constraint(equalToConstant: 50),
 
             
             //Constraint for avatar
@@ -167,13 +158,7 @@ class ProfileHeaderView: UIView {
             commonInformationStack.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 16),
             commonInformationStack.heightAnchor.constraint(equalToConstant: 130),
             commonInformationStack.widthAnchor.constraint(equalToConstant: 200),
-            commonInformationStack.leadingAnchor.constraint(equalTo: catAvatarImageView.trailingAnchor, constant: 16),
-            
-            //Constraint for ViewBarWhite
-            
-            viewBar.heightAnchor.constraint(equalToConstant: 40),
-            viewBar.widthAnchor.constraint(equalToConstant: 400),
-            viewBar.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: -30),
+            commonInformationStack.leadingAnchor.constraint(equalTo: catAvatarImageView.trailingAnchor, constant: 16)
         ])
     }
 } 
