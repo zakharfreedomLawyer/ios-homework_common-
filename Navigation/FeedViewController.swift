@@ -5,7 +5,8 @@
 //  Created by Захар Кисляк on 23.10.2022.
 //
 
-import UIKit 
+import UIKit
+import StorageService 
 
 final class FeedViewController: UIViewController {
     

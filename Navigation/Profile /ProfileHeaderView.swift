@@ -6,11 +6,11 @@
 //
 
 import UIKit
+import StorageService 
 
 
 class ProfileHeaderView: UIView {
-    
-    
+        
     //UIStackView (логин, пароль, лейбл)
     
     private let commonInformationStack: UIStackView = {
@@ -102,7 +102,7 @@ class ProfileHeaderView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.backgroundColor  = .systemGray6
+        self.backgroundColor  = .systemGray6 
         config()
         setUpUI()
     }

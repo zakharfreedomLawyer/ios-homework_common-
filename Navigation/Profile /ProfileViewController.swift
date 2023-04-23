@@ -6,10 +6,11 @@
 //
 
 import UIKit
+import StorageService 
 
 
 class ProfileViewController: UIViewController {
-
+       
    //MARK: Свойства
    
   let profileHeaderView = ProfileHeaderView()
@@ -34,8 +35,8 @@ class ProfileViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .lightGray
-        profileHeaderView.backgroundColor = .systemGray6
+        view.backgroundColor = .systemGray6
+        profileHeaderView.backgroundColor = .systemGray6 
         profileHeaderView.translatesAutoresizingMaskIntoConstraints = false
         tableView.dataSource = self
         tableView.delegate = self
@@ -44,7 +45,15 @@ class ProfileViewController: UIViewController {
         self.navigationItem.setHidesBackButton(true, animated: true)
         self.navigationController?.navigationBar.backgroundColor = .white
         setUpUIConstrainsts()
-   }
+        
+        //MARK: Фон для Debug и Release конфигурации
+        
+            #if DEBUG
+        return profileHeaderView.backgroundColor = .red
+            #else
+        return profileHeaderView.backgroundColor = .green
+            #endif 
+    }
     
     
     
