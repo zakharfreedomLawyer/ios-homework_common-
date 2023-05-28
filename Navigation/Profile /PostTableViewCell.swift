@@ -6,10 +6,13 @@
 //
 
 import UIKit
-import StorageService 
+import StorageService
+import iOSIntPackage 
+
 
 class PostTableViewCell: UITableViewCell {
-
+ 
+    
     //Заголовок таблицы
     
     private let descriptionText: UILabel = {
@@ -68,11 +71,15 @@ class PostTableViewCell: UITableViewCell {
         backgroundColor = .white
         configuration()
         constraintsForCell()
+        
     }
+    
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+   //Фильтры для картинок (1)
     
     
     func fillImage(text: String) {
@@ -104,6 +111,8 @@ class PostTableViewCell: UITableViewCell {
         contentView.addSubview(commonViews)
     }
     
+   
+    
     //Constraints
     
     func constraintsForCell() {
@@ -133,3 +142,6 @@ class PostTableViewCell: UITableViewCell {
             ])
         }
 }
+
+
+ 
