@@ -71,7 +71,6 @@ class PostTableViewCell: UITableViewCell {
         backgroundColor = .white
         configuration()
         constraintsForCell()
-        
     }
     
     
@@ -79,11 +78,15 @@ class PostTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-   //Фильтры для картинок (1)
-    
+   //MARK: Фильтр для постов
     
     func fillImage(text: String) {
-        imageForCell.image = UIImage(named: text)
+        let processor = ImageProcessor()
+        if let image = UIImage(named: text) {
+            processor.processImage(sourceImage: image, filter: .fade) {
+                newImage in imageForCell.image = newImage
+            }
+        }
     }
     
     func fillauthor(author: String) {
