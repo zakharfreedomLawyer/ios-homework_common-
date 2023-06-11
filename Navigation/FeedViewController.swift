@@ -6,7 +6,8 @@
 //
 
 import UIKit
-import StorageService 
+import StorageService
+import SnapKit
 
 final class FeedViewController: UIViewController {
     
@@ -21,14 +22,14 @@ final class FeedViewController: UIViewController {
         return button
     } ()
     
-    var imageCat = UIImage(named: "cat-")
+    var imageCat = UIImage(named: "cat-2")
     var cateView = UIImageView()
     
 
 
    override func viewDidLoad() {
        super.viewDidLoad()
-       view.backgroundColor = .lightGray
+       view.backgroundColor = .magenta
        view.addSubview(showPostButton)
        showPostButton.frame = CGRect(x: 100, y: 500, width: 150, height: 50)
        showPostButton.setTitle(dataSource.title, for: .normal)
@@ -49,9 +50,8 @@ final class FeedViewController: UIViewController {
        cateView.image = imageCat
        cateView.sizeToFit()
        view.addSubview(cateView)
-      
-           
        addTarget()
+       addAnchors()
    }
 
     
@@ -72,5 +72,21 @@ final class FeedViewController: UIViewController {
         let postViewController = PostViewController()
        navigationController?.pushViewController(postViewController, animated: true)
    }
+    //MARK: -Ограничения для кнопки
+    
+      func addAnchors() {
+        cateView.snp.makeConstraints() { make in
+            make.top.equalTo(24)
+            make.trailing.equalTo(18)
+            make.leading.equalTo(-18)
+        }
+          showPostButton.snp.makeConstraints { make in
+              make.top.equalTo(cateView.snp.bottom).inset(-22)
+              make.center.equalToSuperview()
+              make.height.equalTo(60)
+              make.width.equalTo(100)
+              
+          }
+    }
 }
  

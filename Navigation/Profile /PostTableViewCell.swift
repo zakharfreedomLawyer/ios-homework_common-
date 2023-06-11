@@ -7,7 +7,8 @@
 
 import UIKit
 import StorageService
-import iOSIntPackage 
+import iOSIntPackage
+import SnapKit
 
 
 class PostTableViewCell: UITableViewCell {

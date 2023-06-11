@@ -6,7 +6,8 @@
 //
 
 import UIKit
-import StorageService 
+import StorageService
+import SnapKit
 
 
 class ProfileHeaderView: UIView {
@@ -125,41 +126,35 @@ class ProfileHeaderView: UIView {
         self.commonInformationStack.addArrangedSubview(labelNameCat)
         self.commonInformationStack.addArrangedSubview(labelStatusCat)
         self.commonInformationStack.addArrangedSubview(catTextField)
-        
-    
     }
     
-    //Метод для констрейнтов
+    //MARK: - Метод для констрейнтов/SnapKit 
     
     private func setUpUI() {
         
-        //MARK: Constraints
+        //Ограничения для кнопки
         
-        NSLayoutConstraint.activate([
-            
-            //Constraint for button
+        blueeButton.snp.makeConstraints { make in
+            make.height.equalTo(50)
+            make.top.equalTo(catAvatarImageView.snp.bottom).offset(16)
+            make.leading.trailing.equalToSuperview().inset(16)
+        }
         
-            blueeButton.topAnchor.constraint(equalTo: catAvatarImageView.bottomAnchor, constant: 16),          
-            blueeButton.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor, constant: 16),
-            blueeButton.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor, constant: -16),
-            blueeButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -20),
-            blueeButton.heightAnchor.constraint(equalToConstant: 50),
-
-            
-            //Constraint for avatar
-            
-            catAvatarImageView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 16),
-            catAvatarImageView.leftAnchor.constraint(equalTo: safeAreaLayoutGuide.leftAnchor, constant: 16),
-            catAvatarImageView.heightAnchor.constraint(equalToConstant: 135),
-            catAvatarImageView.widthAnchor.constraint(equalToConstant: 135),
-            
-            //Сonstraint for comonInformationStack
-            
-            commonInformationStack.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 16),
-            commonInformationStack.heightAnchor.constraint(equalToConstant: 130),
-            commonInformationStack.widthAnchor.constraint(equalToConstant: 200),
-            commonInformationStack.leadingAnchor.constraint(equalTo: catAvatarImageView.trailingAnchor, constant: 16)
-        ])
+        //Ограничения для аватара
+        
+        catAvatarImageView.snp.makeConstraints { make in
+            make.top.equalTo(safeAreaLayoutGuide).offset(16)
+            make.left.equalTo(safeAreaLayoutGuide).offset(16)
+            make.height.equalTo(135)
+            make.width.equalTo(135)
+        }
+        
+        //Ограничения для стэка
+        
+        commonInformationStack.snp.makeConstraints { make in
+            make.leading.equalTo(catAvatarImageView.snp.trailing).offset(16)
+            make.centerY.equalTo(catAvatarImageView.snp.centerY)
+            make.trailing.equalToSuperview().offset(-16)
+         }
     }
-} 
-   
+}
